@@ -1,42 +1,45 @@
-import Test from "@/components/Test";
+"use client";
 import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
 
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import MainSection from "./components/MainSection";
+
 export default function Home() {
+  const [first, setfirst] = useState(0);
   return (
     <>
-      <div>
-        <Link href="/">
-          <div className="flex justify-center items-center py-5 px-2 text-blue-300">
-            {/* Logo */}
-            {/* <Image
+      <div className="flex flex-col min-h-screen [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
+        {/* Navbar */}
+        <nav className="">
+          <Navbar />
+        </nav>
+
+        {/* Main */}
+
+        <main className="flex-grow flex flex-col items-center justify-center text-white">
+          <MainSection />
+        </main>
+
+        {/* Footer */}
+        <footer className="">
+          <Footer />
+        </footer>
+      </div>
+    </>
+  );
+}
+
+{
+  /* Logo */
+}
+{
+  /* <Image
                     height={60}
                     width={60}
                     src="../public/logo.png"
                     alt=""
-                  /> */}
-            <div />
-            <div className="flex flex-row space-x-6 justify-center items-center w-full text-3xl">
-              <span className="font-bold ">CrowdNest </span>{" "}
-              <p className="text-gray-400"> Nest for Future</p>
-            </div>
-          </div>
-        </Link>
-        <p className="text-center">
-          CrowdNest is a cutting-edge crowdfunding platform dedicated to
-          supporting tree-planting projects worldwide. Our mission is to harness
-          the power of community funding to combat deforestation and promote
-          environmental sustainability.
-        </p>
-
-        <div className="">
-          <button className="flex justify-center items-center mx-auto mt-20  p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-              Go to Active Projects
-            </span>
-          </button>
-        </div>
-      </div>
-    </>
-  );
+                  /> */
 }

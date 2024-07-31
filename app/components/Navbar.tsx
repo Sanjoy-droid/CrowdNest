@@ -30,7 +30,7 @@ const Navbar = () => {
 
                   <div />
 
-                  <span className="font-bold">CrowdNest</span>
+                  <span className="font-bold text-xl">CrowdNest</span>
                 </div>
               </Link>
             </div>
@@ -38,17 +38,17 @@ const Navbar = () => {
             {/* Primary Navbar items */}
             <div className="flex items-center space-x-1">
               <Link href="/">
-                <div className="py-5 px-3 text-gray-300 hover:text-gray-900">
+                <div className="py-5 px-3 text-gray-300 hover:text-violet-600 font-semibold">
                   Home
                 </div>
               </Link>
               <Link href="/about">
-                <div className="py-5 px-3 text-gray-300 hover:text-gray-900">
+                <div className="py-5 px-3 text-gray-300   hover:text-violet-600 font-semibold">
                   About
                 </div>
               </Link>
               <Link href="/contact">
-                <div className="py-5 px-3 text-gray-300 hover:text-gray-900">
+                <div className="py-5 px-3 text-gray-300   hover:text-violet-600 font-semibold">
                   Contact
                 </div>
               </Link>
@@ -56,14 +56,14 @@ const Navbar = () => {
           </div>
 
           {/* Secondary Navbar items */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-4">
             <Link href="/login">
-              <div className="py-2 px-3 text-gray-700 hover:text-gray-900">
+              <div className="py-2 px-3 text-gray-100 hover:bg-blue-400 transition duration-300 rounded">
                 Login
               </div>
             </Link>
             <Link href="/signup">
-              <div className="py-2 px-3 bg-blue-500 text-white rounded hover:bg-blue-400 transition duration-300">
+              <div className="py-2 px-3 text-white rounded hover:bg-blue-400 transition duration-300">
                 Sign Up
               </div>
             </Link>
