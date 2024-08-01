@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
 
-const page = () => {
+import React from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+const Login = () => {
   return (
-    <div className="flex flex-row items-center justify-center ml-44">
+    <div className=" flex justify-center items-center ">
       <button
         type="button"
         className="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
@@ -23,6 +26,10 @@ const page = () => {
         Sign in with Twitter
       </button>
       <button
+        onClick={() => {
+          // console.log("github clicked ");
+          signIn("github");
+        }}
         type="button"
         className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 me-2 mb-2"
       >
@@ -41,7 +48,12 @@ const page = () => {
         </svg>
         Sign in with Github
       </button>
+      {/* sign in with google */}
       <button
+        onClick={() => {
+          signIn("google");
+          // console.log("google click ")
+        }}
         type="button"
         className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2"
       >
@@ -64,4 +76,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;
