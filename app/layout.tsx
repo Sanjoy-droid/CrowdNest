@@ -24,7 +24,7 @@ export default function RootLayout({
         <SessionWrapper>
           <div
             className="
-          flex flex-col min-h-screen
+          flex flex-col flex-grow  min-h-screen
           absolute inset-0 -z-10 h-full w-full items-center
           [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]
         "
@@ -33,7 +33,9 @@ export default function RootLayout({
               <Navbar />
             </nav>
 
-            <main className="flex-grow mt-24 w-full">{children}</main>
+            <main className="flex-grow  w-full h-[480vh] text-white">
+              {children}
+            </main>
 
             <footer className="w-full">
               <Footer />
