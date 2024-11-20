@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import MainSection from "./components/MainSection";
 
 export default function Home() {
-  const [first, setfirst] = useState(0);
   return (
     <>
       <div className="">
@@ -18,16 +17,4 @@ export default function Home() {
       </div>
     </>
   );
-}
-
-{
-  /* Logo */
-}
-{
-  /* <Image
-                    height={60}
-                    width={60}
-                    src="../public/logo.png"
-                    alt=""
-                  /> */
 }
