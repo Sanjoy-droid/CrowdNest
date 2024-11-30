@@ -1,73 +1,73 @@
 import React from "react";
 import Link from "next/link";
+import { db } from "../db";
+import { usersTable, postsTable, SelectPost } from "../db/schema";
 
-const Cards = () => {
+interface CardsProps {
+  post: {
+    title: string;
+    content: string;
+    imageURL: string;
+    id: number;
+  };
+}
+
+const Cards: React.FC<CardsProps> = ({ post }) => {
   return (
-    <>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-72 w-72">
-        <img
-          className="rounded-t-lg h-40 w-40"
-          src="https://img.freepik.com/free-photo/people-planting-tree-countryside_23-2149401191.jpg"
-          alt=""
-        />
-        <div className="p-5">
-          <a href="#">
-            <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
-              Noteworthy technology acquisitions 2021
-            </h5>
-          </a>
+    <div className="border border-gray-500 rounded-lg shadow-lg w-full sm:w-80 lg:w-96 h-[26rem] overflow-hidden">
+      {/* Image Section */}
+      <img
+        className="w-full h-48 object-cover"
+        src={post.imageURL} // Access the correct property
+        alt={post.title || "Project Image"}
+      />
 
-          <Link
-            href="projects/mangroverestoration"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      {/* Card Content */}
+      <div className="p-6">
+        <h5 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+          {post.title}
+        </h5>
+        <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+          {post.content.length > 100
+            ? `${post.content.slice(0, 100)}...`
+            : post.content}
+        </p>
+
+        {/* Read More Button */}
+        <Link
+          href={`/projects/${post.title.toLowerCase().replace(/\s+/g, "")}`}
+          className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Read More
+          <svg
+            className="w-4 h-4 ml-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
           >
-            Read more
-            <svg
-              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </Link>
-        </div>
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </Link>
       </div>
-    </>
-  );
-};
-
-const CardsRow = () => {
-  return (
-    <div className=" flex justify-between items-center p-10">
-      <Cards />
-      <Cards />
-      <Cards />
     </div>
   );
 };
 
-const Project = () => {
+const Project = async () => {
+  const posts = await db.query.postsTable.findMany();
+
   return (
     <>
-      <div className="h-[120vh] [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] ">
-        {/* columns */}
-        <div className="">
-          {/* row */}
-          {/* <CardsRow /> */}
-          <CardsRow />
-          <div className="flex flex-row  items-center justify-center space-x-14 py-10">
-            <Cards />
-            <Cards />
-          </div>
-        </div>
+      <div className="flex flex-wrap justify-center items-center gap-6 py-10">
+        {posts.map((post) => (
+          <Cards key={post.id} post={post} />
+        ))}
       </div>
     </>
   );
